@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Playball');
+
+twitch-home {
+    header{
+        background: $twitch; /* Old browsers */
+        width: 100vw;
+        padding: 20px 0px 0 0px;
+
+        .logo{
+            margin: 0 auto 10px;
+            text-align: center;
+
+            .prefix{
+                display: inline-block;
+                font-size: 20px;
+                background-color: white;
+                color: $twitch;
+                padding: 0px 5px;
+                border-radius: 6px;
+                font-weight: bold;
+            }
+            .nomeEmpresa{
+                display: inline-block;
+                font-size: 30px;
+                margin-left: 5px;
+                color: white;
+            }
+        }
+    }
+    
+  .painelLogin {
+    height: 40px;
+    width: calc(100vw - 20px);
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    padding: 10px;
+
+    button {
+      padding: 0px;
+      height: 20px;
+      color: $twitch !important;
+
+      ion-icon {
+        margin-top: -4px;
+      }
+    }
+  }
+
+  .headList {
+    padding: 10px;
+    font-size: 13px;
+    font-weight: bold;
+  }
+
+  .listClipsHorizontal {
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding-left: 10px;
+
+    .itemList {
+      width: 120px;
+      height: 80px;
+      background-color: red;
+      display: inline-block;
+      border: 1px solid black;
+      margin-right: 10px;
+      border-radius: 10px;
+    }
+  }
+
+  .listCanaisHorizontal {
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding-left: 10px;
+    height: calc(100% - 335px);
+
+    .itemList {
+      width: 120px;
+      height: 100%;
+      background-color: #e9e9e9;
+      display: inline-block;
+      margin-right: 10px;
+      border-radius: 4px;
+
+      .thumbnail{
+        width: 50px;
+        height: 50px;
+        margin: 15px auto;
+        background-color: red;
+        border-radius: 4px;
+        overflow: hidden;
+
+        img{
+            width: 50px
+        }
+      }
+
+      .content{
+          height: calc(100% - 200px);
+          text-align: center;
+          padding: 0px 20px;
+      }
+    }
+
+    .add {
+      position: relative;
+
+      .conteudoAdd {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 30px);
+        height: calc(100% - 30px);
+        background-color: #dadada;
+        border-radius: 4px;
+        text-align: center;
+
+        .iconAdd {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #858585;
+            font-size: 12px;
+        }
+      }
+
+      ion-icon {
+        font-size: 25px;
+      }
+    }
+  }
+  .scroll-content{overflow-y: hidden;}
+}

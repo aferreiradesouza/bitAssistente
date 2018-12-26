@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
+import { TwitchPage } from '../twitch/twitchHome';
 import { ContactPage } from '../contact/contact';
-import { HomePage } from '../home/home';
+import { YoutubePage } from '../youtube/youtubeHome';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = AboutPage;
+  tab1Root = YoutubePage;
+  tab2Root = TwitchPage;
   tab3Root = ContactPage;
 
   constructor() {
