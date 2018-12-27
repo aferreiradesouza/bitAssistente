@@ -1,45 +1,68 @@
 <ion-content scrollY="false">
   <header>
     <div class="logo">
-      <div class="prefix">bit</div><div class="nomeEmpresa">Assistente</div>
+      <div class="prefix">bit</div>
+      <div class="nomeEmpresa">Assistente</div>
     </div>
   </header>
 
-<div class="headList">
-  TOP CLIPS
-  <div class="filtrarClips">
-    <ion-icon name="search"></ion-icon>FILTRAR
+  <div class="headList">
+    TOP CLIPS
+    <div class="filtrarClips" (click)="modalFiltroClips()" *ngIf="buttonClip == false">PROCURAR CANAL</div>
   </div>
-</div>
-<div class="listClipsHorizontal">
-  <div class="itemList" *ngFor="let item of data"></div>
-</div>
-
-<div class="headList jogos">
-  JOGOS
-</div>
-<div class="listGamesHorizontal">
-  <div class="itemList" *ngFor="let item of data"><img src="https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-272x380.jpg"></div>
-</div>
-
-<div class="headList">
-  CANAIS
-</div>
-<div class="listCanaisHorizontal">
-  <div class="itemList add">
-    <div class="conteudoAdd">
-      <div class="iconAdd"><ion-icon name="add"></ion-icon>
-      <div>ADICIONAR<br>CANAL</div>
+  <div class="listHorizontal">
+    <div class="itemListClips" *ngFor="let item of clips">
+      <img src="{{ item.thumbnails.medium }}" />
+      <div class="channelClip">
+        <img src="{{ item.broadcaster.logo }}" />
       </div>
     </div>
   </div>
 
-  <div class="itemList item" *ngFor="let item of data">
-    <div class="thumbnail"><img src="{{item.url}}"></div>
-    <div class="content">
-      {{item.nome}}
-      <hr>
+  <!-- LOADING -->
+  <div class="listHorizontal loading" *ngIf="buttonClip">
+    <div class="itemListClips">
+    </div>
+    <div class="itemListClips">
+    </div>
+    <div class="itemListClips">
+    </div>
+    <div class="itemListClips">
+    </div>
+    <div class="loadingIcon">
+      <div>{{errorMensagem}}</div>
+      <div class="filtrarClips ajustes" (click)="modalFiltroClips()">PROCURAR CANAL</div>
     </div>
   </div>
-</div>
+  <!-- LOADING -->
+
+  <div class="headList jogos">JOGOS</div>
+  <div class="listHorizontal">
+    <div class="itemListGames" *ngFor="let item of games" (click)="modalPaginaJogo(item)">
+      <img src="{{ item.game.box.medium }}" />
+      <div class="usuariosAssistindo">
+        <ion-icon name="people"></ion-icon><span>{{ item.viewers }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="headList">CANAIS</div>
+  <div class="listHorizontal channels">
+    <div class="itemListChannels add">
+      <div class="conteudoAdd">
+        <div class="iconAdd">
+          <ion-icon name="add"></ion-icon>
+          <div>ADICIONAR<br />CANAL</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="itemListChannels item" *ngFor="let item of data">
+      <div class="thumbnail"><img src="{{ item.url }}" /></div>
+      <div class="content">
+        {{ item.nome }}
+        <hr />
+      </div>
+    </div>
+  </div>
 </ion-content>

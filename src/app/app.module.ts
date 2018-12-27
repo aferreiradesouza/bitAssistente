@@ -8,8 +8,15 @@ import { ConfiguracoesPage } from '../paginas/configuracoes/configuracoes';
 import { YoutubePage } from '../paginas/youtube/youtubeHome';
 import { TabsPage } from '../paginas/tabs/tabs';
 
+import { filtroClipsModal } from '../paginas/modais/twitch/filtroClips/filtro';
+import { PaginaJogoModal } from '../paginas/modais/twitch/paginaJogo/jogo';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AjaxService } from '../shared/ajax.service';
+import { twitchService } from '../provedores/apiTwitch.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -17,11 +24,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TwitchPage,
     ConfiguracoesPage,
     YoutubePage,
-    TabsPage
+    TabsPage,
+    filtroClipsModal,
+    PaginaJogoModal
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,11 +39,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TwitchPage,
     ConfiguracoesPage,
     YoutubePage,
-    TabsPage
+    TabsPage,
+    filtroClipsModal,
+    PaginaJogoModal
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AjaxService,
+    twitchService,
+    HttpClient,
+    IonicStorageModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

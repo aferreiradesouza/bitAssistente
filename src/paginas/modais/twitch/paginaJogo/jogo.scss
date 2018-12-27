@@ -1,0 +1,44 @@
+jogo-pagina{
+    ion-header{
+        ion-navbar{
+            ion-title{
+            background-color: $twitch;
+            color: white;
+
+            .toolbar-title{
+                color: white;
+            }
+            .iconTwitch{
+                color: white;
+                border-radius: 50px;
+                font-size: 13px;
+            }
+            span{
+                color: white;
+                font-weight:normal;
+
+                ion-icon{
+                    position: absolute;
+                    right: 10px;
+                    font-size: 40px;
+                    top: 2px;
+                    }
+                }
+            }
+        }
+    }
+
+    ion-list{
+        margin-top: 15px;
+        img{
+            border-radius: 25px;
+            width: 25px;
+        }
+    }
+
+    .error{
+        width: 100vw;
+        text-align: center;
+        color: #ccc;
+    }
+}
