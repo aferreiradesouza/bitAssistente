@@ -1,25 +1,15 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header> -->
-
 <ion-content scrollY="false">
   <header>
     <div class="logo">
-      <div class="prefix">bit</div><div class="nomeEmpresa">Assistent</div>
+      <div class="prefix">bit</div><div class="nomeEmpresa">Assistente</div>
     </div>
-    <div class="filtro"><ion-searchbar></ion-searchbar></div>
   </header>
-  <div class="painelLogin">
-    <button ion-button clear>
-        <ion-icon name='contact' is-active="false"></ion-icon>
-        &nbsp;Logar
-    </button>
-</div>
 
 <div class="headList">
   TOP CLIPS
+  <div class="filtrarClips">
+    <ion-icon name="search"></ion-icon>FILTRAR
+  </div>
 </div>
 <div class="listClipsHorizontal">
   <div class="itemList" *ngFor="let item of data"></div>

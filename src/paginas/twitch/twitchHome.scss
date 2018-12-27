@@ -5,7 +5,7 @@ twitch-home {
     header{
         background: $twitch; /* Old browsers */
         width: 100vw;
-        padding: 20px 0px 0 0px;
+        padding: 20px 0px 15px 0px;
 
         .logo{
             margin: 0 auto 10px;
@@ -52,6 +52,11 @@ twitch-home {
     padding: 10px;
     font-size: 13px;
     font-weight: bold;
+
+    .filtrarClips{
+      float: right;
+      font-size: 10px;
+    }
   }
 
   .listClipsHorizontal {
@@ -62,9 +67,8 @@ twitch-home {
     .itemList {
       width: 120px;
       height: 80px;
-      background-color: red;
+      background-color: #ccc;
       display: inline-block;
-      border: 1px solid black;
       margin-right: 10px;
       border-radius: 10px;
     }

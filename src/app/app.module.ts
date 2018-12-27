@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { TwitchPage } from '../pages/twitch/twitchHome';
-import { ContactPage } from '../pages/contact/contact';
-import { YoutubePage } from '../pages/youtube/youtubeHome';
-import { TabsPage } from '../pages/tabs/tabs';
+import { TwitchPage } from '../paginas/twitch/twitchHome';
+import { ConfiguracoesPage } from '../paginas/configuracoes/configuracoes';
+import { YoutubePage } from '../paginas/youtube/youtubeHome';
+import { TabsPage } from '../paginas/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,7 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     TwitchPage,
-    ContactPage,
+    ConfiguracoesPage,
     YoutubePage,
     TabsPage
   ],
@@ -27,7 +27,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     TwitchPage,
-    ContactPage,
+    ConfiguracoesPage,
     YoutubePage,
     TabsPage
   ],
