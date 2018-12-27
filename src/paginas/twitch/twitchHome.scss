@@ -59,6 +59,12 @@ twitch-home {
     }
   }
 
+  .jogos{
+    @media (max-height: 480px) {
+      display: none;
+    }
+  }
+
   .listClipsHorizontal {
     white-space: nowrap;
     overflow-x: scroll;
@@ -71,6 +77,25 @@ twitch-home {
       display: inline-block;
       margin-right: 10px;
       border-radius: 10px;
+    }
+  }
+
+  .listGamesHorizontal {
+    white-space: nowrap;
+    overflow-x: scroll;
+    padding-left: 10px;
+
+    @media (max-height: 480px) {
+      display: none;
+    }
+
+    .itemList {
+      width: 100px;
+      height: 140px;
+      background-color: #ccc;
+      display: inline-block;
+      margin-right: 10px;
+      border-radius: 2px;
     }
   }
 
