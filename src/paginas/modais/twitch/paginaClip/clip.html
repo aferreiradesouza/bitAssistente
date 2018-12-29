@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <span>{{clipSelecionado.broadcaster_name}}</span>
+            <span (click)="dismiss()">
+                <ion-icon name="close"></ion-icon>
+            </span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="video">
+        <iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(clipSelecionado.embed_url+'&autoplay=false')" height="100%" width="100%"
+            frameborder="0" scrolling="false" allowfullscreen="false">
+        </iframe>
+    </div>
+    <div class="nameInfo">
+        <span>{{clipSelecionado.title}}</span>
+        <div>{{clipSelecionado.view_count | number:'1.0-0':'pt-BR'}} vizualizações</div>
+    </div>
+    <div class="detalhes">
+        <ion-list>
+            <ion-list-header>
+                INFORMAÇÕES DO CANAL
+            </ion-list-header>
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="{{clipSelecionado.logo}}">
+                </ion-avatar>
+                <p>Canal</p>
+                <h2>{{clipSelecionado.broadcaster_name}}</h2>
+            </ion-item>
+            <ion-item>
+                <p>Jogando</p>
+                <h2>{{clipGame.game}}</h2>
+            </ion-item>
+        </ion-list>
+
+        <ion-list>
+            <ion-list-header>
+                INFORMAÇÕES DO CLIP
+            </ion-list-header>
+            <ion-item>
+                <ion-avatar item-start>
+                    <img src="{{imgCriado}}">
+                </ion-avatar>
+                <p>Criado por</p>
+                <h2>{{criadoPor}}</h2>
+            </ion-item>
+            <ion-item>
+                <p>Criado em</p>
+                <h2>{{clipGame.created_at | date: 'dd/MM/yyyy'}}</h2>
+            </ion-item>
+            <ion-item>
+                <p>Linguagem</p>
+                <h2>{{clipGame.language | uppercase}}</h2>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>

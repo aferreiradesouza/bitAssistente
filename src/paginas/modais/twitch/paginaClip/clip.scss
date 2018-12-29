@@ -1,4 +1,4 @@
-filtro-clips{
+clip-pagina{
     ion-header{
         ion-navbar{
             .toolbar-background{
@@ -12,11 +12,12 @@ filtro-clips{
 
             ion-title{
             background-color: $twitch;
-            position: relative;
             color: white;
 
+            .toolbar-title{
+                color: white;
+            }
             .iconTwitch{
-                display: inline;
                 color: white;
                 border-radius: 50px;
                 font-size: 13px;
@@ -39,19 +40,29 @@ filtro-clips{
             }
         }
     }
-    
 
-    ion-list{
-        margin-top: 15px;
-        img{
-            border-radius: 25px;
-            width: 25px;
+    .video{
+        width: 100vw;
+        height: 200px;
+        background-color: black;
+    }
+
+    .nameInfo{
+        width: 100%;
+        padding: 10px;
+
+        span{
+            font-size: 20px;
+        }
+
+        div{
+            font-size: 12px;
+            color: #ccc;
         }
     }
 
-    .error{
-        width: 100vw;
-        text-align: center;
-        color: #ccc;
+    .detalhes{
+        width: calc(100vw - 20px);
+        margin: 0 auto;
     }
 }

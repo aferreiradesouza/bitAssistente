@@ -2,8 +2,52 @@
   <ion-navbar>
     <ion-title>
       <span>{{gameSelecionado.game.name}}</span>
-      <span (click)="dismiss()"><ion-icon name="close"></ion-icon></span>
+      <span (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </span>
     </ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content></ion-content>
+<ion-content>
+  <div class="margem-banner">
+    <div class="banner" [ngStyle]="{'background-image': 'url('+gameSelecionado.game.box.large+')'}"></div>
+    <div class="info">
+      <img src="{{gameSelecionado.game.box.large}}">
+      <div class="infoDetalhes">
+        <div class="item">
+          <div class="title">Seguidores:</div>
+          <div class="detalhe">
+            <ion-icon name="person"></ion-icon>
+            <div class="number">{{gameSelecionado.game.popularity | number:'1.0-0':'pt-BR'}}</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">Canais ao vivo:</div>
+          <div class="detalhe">
+            <ion-icon name="videocam"></ion-icon>
+            <div class="number">{{gameSelecionado.channels | number:'1.0-0':'pt-BR'}}</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="title">Espectadores:</div>
+          <div class="detalhe">
+            <ion-icon name="people"></ion-icon>
+            <div class="number">{{gameSelecionado.viewers | number:'1.0-0':'pt-BR'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-list>
+    <ion-list-header>
+        Canais ao vivo
+    </ion-list-header>
+    <ion-item *ngFor="let item of gameObtido">
+      <h2>{{item.user_name}}</h2>
+      <p>{{item.viewer_count | number:'1.0-0':'pt-BR'}} espectadores</p>
+      <div class="buttonAdd">
+          <ion-icon name="add"></ion-icon>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

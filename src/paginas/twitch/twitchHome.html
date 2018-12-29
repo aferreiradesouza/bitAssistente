@@ -11,10 +11,10 @@
     <div class="filtrarClips" (click)="modalFiltroClips()" *ngIf="buttonClip == false">PROCURAR CANAL</div>
   </div>
   <div class="listHorizontal">
-    <div class="itemListClips" *ngFor="let item of clips">
-      <img src="{{ item.thumbnails.medium }}" />
+    <div class="itemListClips" *ngFor="let item of clips" (click)="modalPaginaClip(item)">
+      <img src="{{ item.thumbnail_url }}" />
       <div class="channelClip">
-        <img src="{{ item.broadcaster.logo }}" />
+        <img src="{{ item.logo }}" />
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
     <div class="itemListGames" *ngFor="let item of games" (click)="modalPaginaJogo(item)">
       <img src="{{ item.game.box.medium }}" />
       <div class="usuariosAssistindo">
-        <ion-icon name="people"></ion-icon><span>{{ item.viewers }}</span>
+        <ion-icon name="people"></ion-icon><span>{{ item.viewers | number:'1.0-0':'pt-BR'}}</span>
       </div>
     </div>
   </div>

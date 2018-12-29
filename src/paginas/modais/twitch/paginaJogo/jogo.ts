@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { twitchService } from '../../../../provedores/apiTwitch.service';
+import localePtBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 
 @Component({
   selector: "jogo-pagina",
@@ -14,11 +16,12 @@ export class PaginaJogoModal implements OnInit{
   ngOnInit(){
     this.gameSelecionado = this.params.get('jogoSelect');
     this.obterJogo();
+    registerLocaleData(localePtBr);
   }
 
   async obterJogo(){
-    await this.twitchService.channels(this.gameSelecionado.game.name).then((response) => {
-        this.gameObtido = response;
+    await this.twitchService.streams(this.gameSelecionado.game._id).then((response) => {
+        this.gameObtido = response.data;
         console.log(this.gameObtido)
     })
   }

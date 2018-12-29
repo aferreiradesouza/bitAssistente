@@ -17,6 +17,7 @@ import { AjaxService } from '../shared/ajax.service';
 import { twitchService } from '../provedores/apiTwitch.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { PaginaClipModal } from '../paginas/modais/twitch/paginaClip/clip';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { IonicStorageModule } from '@ionic/storage';
     YoutubePage,
     TabsPage,
     filtroClipsModal,
-    PaginaJogoModal
+    PaginaJogoModal,
+    PaginaClipModal
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { IonicStorageModule } from '@ionic/storage';
     YoutubePage,
     TabsPage,
     filtroClipsModal,
-    PaginaJogoModal
+    PaginaJogoModal,
+    PaginaClipModal
   ],
   providers: [
     StatusBar,

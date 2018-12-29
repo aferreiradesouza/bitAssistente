@@ -3,7 +3,10 @@ import { NavController } from 'ionic-angular';
 import { twitchService } from '../../provedores/apiTwitch.service';
 import { ModalController } from 'ionic-angular';
 import { filtroClipsModal } from '../modais/twitch/filtroClips/filtro';
-import { PaginaJogoModal } from '../modais/twitch/paginaJogo/jogo'
+import { PaginaJogoModal } from '../modais/twitch/paginaJogo/jogo';
+import localePtBr from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+import { PaginaClipModal } from '../modais/twitch/paginaClip/clip'
 
 @Component({
   selector: 'twitch-home',
@@ -20,23 +23,29 @@ export class TwitchPage implements OnInit{
   ngOnInit(){
     this.obterGames();
     this.buttonClip = true;
-    this.errorMensagem = 'É necessário buscar um canal'
+    this.errorMensagem = 'É necessário buscar um canal';
+    registerLocaleData(localePtBr);
   }
 
   obterClips(channel){
     this.twitchService.clips(channel)
       .then((response) => {
-        this.clips = response.clips
+        this.clips = response.data
         if(this.clips.length == 0){
           this.buttonClip = true;
           this.errorMensagem = 'Nenhum clip encontrado desse canal';
         }else{
           this.buttonClip = false;
         }
+        this.twitchService.channelById(this.clips[0].broadcaster_id)
+          .then((res) => {
+            this.clips.forEach(f => {
+              f.logo = res.logo
+            });
+          })
         console.log(this.clips)
       })
       .catch((response) => {
-        console.log(response)
       })
   }
 
@@ -55,14 +64,21 @@ export class TwitchPage implements OnInit{
     const modal = this.modalCtrl.create(filtroClipsModal);
     modal.onDidDismiss(data => {
       if(data != 'fechar'){
-        this.obterClips(data.name)
+        this.obterClips(data._id)
       }
     });
     modal.present();
   }
 
   modalPaginaJogo(game) {
+    console.log(game);
     let modal = this.modalCtrl.create(PaginaJogoModal, { 'jogoSelect': game} );
+    modal.present();
+  }
+
+  modalPaginaClip(clip) {
+    console.log(clip);
+    let modal = this.modalCtrl.create(PaginaClipModal, { 'clipSelect': clip} );
     modal.present();
   }
 

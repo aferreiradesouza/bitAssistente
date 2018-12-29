@@ -1,6 +1,15 @@
 jogo-pagina{
     ion-header{
         ion-navbar{
+            .toolbar-background{
+            background-color: $twitch;
+
+            } 
+            .toolbar-background-md{
+                background-color: $twitch;
+
+            }
+
             ion-title{
             background-color: $twitch;
             color: white;
@@ -16,12 +25,16 @@ jogo-pagina{
             span{
                 color: white;
                 font-weight:normal;
+                display: inline;
 
                 ion-icon{
                     position: absolute;
                     right: 10px;
                     font-size: 40px;
-                    bottom: 2px;
+                    bottom: 1px;
+                }
+                    .icon-md{
+                        bottom: -10px;
                     }
                 }
             }
@@ -40,5 +53,112 @@ jogo-pagina{
         width: 100vw;
         text-align: center;
         color: #ccc;
+    }
+
+    .margem-banner{
+        width: 100vw;
+        height: calc(50% - 80px);
+        overflow: hidden;
+        position: relative;
+        max-height: 231.500px;
+
+        @media (max-width: 320px){
+            height: 200px !important;
+        }
+
+        .banner{
+            background-size: cover;
+            filter: blur(5px);
+            height: 100%;
+            width: 100%;
+            transform: scale(2);
+        }
+
+        .info{
+            width: calc(100vw - 40px);
+            height: calc(100% - 40px);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            img{
+                display: inline-block;
+                height: 100%;
+            }
+
+            .infoDetalhes{
+                width: calc(100% - 163px);
+                height: 100%;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding: 0px 10px 10px 0px;
+
+                @media only screen and (max-width: 414px){
+                    width: calc(100% - 147px);
+                }
+
+                @media only screen and (max-width: 320px){
+                    width: calc(100% - 125px);
+                }
+
+                .item{
+                    width: 100%;
+                    padding: 5px;
+                    margin-top: 10px;
+                    height: calc(33.33% - 10px);
+                    background-color: $twitch;
+                    border:1px solid $twitch;
+                    border-radius: 2px;
+                    padding: 10px;
+                    color: white;
+
+                    @media only screen and (max-width: 320px){
+                        padding: 5px;
+                    }
+
+                    .title{
+                        font-size: 10px;
+                    }
+                    .detalhe{
+                        position: relative;
+                        height: calc(100% - 10px);
+
+                        ion-icon{
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                        }
+                        .number{
+                            position: absolute;
+                            left: 20px;
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .buttonAdd{
+        position: relative;
+        float: right;
+        height: 35px;
+        background-color: white;
+        color: $twitch;
+        border: 1px solid $twitch;
+        margin-top: -37px;
+        font-size: 12px;
+        padding: 5px 16.5px;
+        border-radius: 25px;
+
+        ion-icon{
+            position: absolute;
+            font-size: 35px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
     }
 }
