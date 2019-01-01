@@ -10,6 +10,8 @@ import { TabsPage } from '../paginas/tabs/tabs';
 
 import { filtroClipsModal } from '../paginas/modais/twitch/filtroClips/filtro';
 import { PaginaJogoModal } from '../paginas/modais/twitch/paginaJogo/jogo';
+import { PaginaClipModal } from '../paginas/modais/twitch/paginaClip/clip';
+import { FiltroJogosModal } from '../paginas/modais/twitch/filtroJogos/filtroJogos';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +19,6 @@ import { AjaxService } from '../shared/ajax.service';
 import { twitchService } from '../provedores/apiTwitch.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { PaginaClipModal } from '../paginas/modais/twitch/paginaClip/clip';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PaginaClipModal } from '../paginas/modais/twitch/paginaClip/clip';
     TabsPage,
     filtroClipsModal,
     PaginaJogoModal,
-    PaginaClipModal
+    PaginaClipModal,
+    FiltroJogosModal
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { PaginaClipModal } from '../paginas/modais/twitch/paginaClip/clip';
     TabsPage,
     filtroClipsModal,
     PaginaJogoModal,
-    PaginaClipModal
+    PaginaClipModal,
+    FiltroJogosModal
   ],
   providers: [
     StatusBar,

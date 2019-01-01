@@ -6,7 +6,8 @@ import { filtroClipsModal } from '../modais/twitch/filtroClips/filtro';
 import { PaginaJogoModal } from '../modais/twitch/paginaJogo/jogo';
 import localePtBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { PaginaClipModal } from '../modais/twitch/paginaClip/clip'
+import { PaginaClipModal } from '../modais/twitch/paginaClip/clip';
+import { FiltroJogosModal } from '../modais/twitch/filtroJogos/filtroJogos';
 
 @Component({
   selector: 'twitch-home',
@@ -66,6 +67,14 @@ export class TwitchPage implements OnInit{
       if(data != 'fechar'){
         this.obterClips(data._id)
       }
+    });
+    modal.present();
+  }
+  
+  modalFiltroJogos() {
+    const modal = this.modalCtrl.create(FiltroJogosModal);
+    modal.onDidDismiss(data => {
+      console.log(data)
     });
     modal.present();
   }

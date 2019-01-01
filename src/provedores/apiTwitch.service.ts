@@ -17,7 +17,7 @@ export class twitchService {
         return games;
     }
     async gamesByName(name) {
-        const url = `https://api.twitch.tv/kraken/games?query=${name}`
+        const url = `https://api.twitch.tv/kraken/search/games?query=${name}`
         const games = await this.ajax.get<any>(url);
         return games;
     }

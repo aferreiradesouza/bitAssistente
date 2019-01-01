@@ -1,0 +1,61 @@
+filtro-jogos{
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+            background-color: $twitch;
+
+            } 
+            .toolbar-background-md{
+                background-color: $twitch;
+
+            }
+
+            ion-title{
+            background-color: $twitch;
+            position: relative;
+            color: white;
+
+            .iconTwitch{
+                display: inline;
+                color: white;
+                border-radius: 50px;
+                font-size: 13px;
+            }
+            span{
+                color: white;
+                font-weight:normal;
+                display: inline;
+
+                ion-icon{
+                    position: absolute;
+                    right: 10px;
+                    font-size: 40px;
+                    bottom: 1px;
+                }
+                    .icon-md{
+                        bottom: -10px;
+                    }
+                }
+            }
+        }
+    }
+    .item-ios ion-thumbnail img{
+        width: 45px !important;
+        height: none !important;
+    }
+
+    .conteudo{
+        width: 100vw;
+        padding: 5px;
+
+        .imgCapaDiv{
+            width: calc(33.33% - 5px);
+            margin-right: 10px;
+            display: inline-block;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+}

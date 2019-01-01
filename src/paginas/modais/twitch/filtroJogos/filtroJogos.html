@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="iconTwitch">
+                <ion-icon name="logo-twitch"></ion-icon>
+            </div>
+            <span>Procurar Jogos</span>
+            <span (click)="dismiss('fechar')">
+                <ion-icon name="close"></ion-icon>
+            </span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-searchbar (ionInput)="procurarJogo(filterGames)" [(ngModel)]="filterGames" placeholder="Procurar"></ion-searchbar>
+    <!-- <ion-list>
+        <ion-item *ngFor="let item of jogos">
+            <ion-thumbnail item-start>
+                <img src="{{item.box.large}}">
+            </ion-thumbnail>
+            <h2>{{item.name}}</h2>
+            <p>{{item.popularity}} espectadores</p>
+            <button ion-button clear item-end>View</button>
+        </ion-item>
+    </ion-list> -->
+    <div class="conteudo">
+        <div class="imgCapaDiv" *ngFor="let item of jogos">
+        </div>
+    </div>
+</ion-content>

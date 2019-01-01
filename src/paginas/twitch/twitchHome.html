@@ -8,7 +8,7 @@
 
   <div class="headList">
     TOP CLIPS
-    <div class="filtrarClips" (click)="modalFiltroClips()" *ngIf="buttonClip == false">PROCURAR CANAL</div>
+    <div class="filtro" (click)="modalFiltroClips()" *ngIf="buttonClip == false">PROCURAR CANAL</div>
   </div>
   <div class="listHorizontal">
     <div class="itemListClips" *ngFor="let item of clips" (click)="modalPaginaClip(item)">
@@ -36,7 +36,10 @@
   </div>
   <!-- LOADING -->
 
-  <div class="headList jogos">JOGOS</div>
+  <div class="headList jogos">
+    JOGOS
+    <div class="filtro" (click)="modalFiltroJogos()">PROCURAR JOGOS</div>
+  </div>
   <div class="listHorizontal">
     <div class="itemListGames" *ngFor="let item of games" (click)="modalPaginaJogo(item)">
       <img src="{{ item.game.box.medium }}" />
