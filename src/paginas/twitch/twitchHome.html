@@ -5,7 +5,6 @@
       <div class="nomeEmpresa">Assistente</div>
     </div>
   </header>
-
   <div class="headList">
     TOP CLIPS
     <div class="filtro" (click)="modalFiltroClips()" *ngIf="buttonClip == false">PROCURAR CANAL</div>
@@ -51,7 +50,7 @@
 
   <div class="headList">CANAIS</div>
   <div class="listHorizontal channels">
-    <div class="itemListChannels add">
+    <div class="itemListChannels add" (click)="modalFiltroChannel()">
       <div class="conteudoAdd">
         <div class="iconAdd">
           <ion-icon name="add"></ion-icon>
@@ -60,10 +59,10 @@
       </div>
     </div>
 
-    <div class="itemListChannels item" *ngFor="let item of data">
-      <div class="thumbnail"><img src="{{ item.url }}" /></div>
+    <div class="itemListChannels item" *ngFor="let item of channels">
+      <div class="thumbnail"><img src="{{ item.logo }}" /></div>
       <div class="content">
-        {{ item.nome }}
+        {{ item.display_name }}
         <hr />
       </div>
     </div>

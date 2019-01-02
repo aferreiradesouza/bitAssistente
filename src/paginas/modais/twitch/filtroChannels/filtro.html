@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            <div class="iconTwitch"><ion-icon name="logo-twitch"></ion-icon></div>
+            <span>Procurar Canal</span>
+            <span (click)="dismiss('fechar')"><ion-icon name="close"></ion-icon></span>
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar (ionInput)="procurarChannel(filterChannel)" [(ngModel)]="filterChannel" placeholder="Procurar"></ion-searchbar>
+    <ion-list>
+        <ion-item *ngFor="let item of channels" (click)="dismiss(item)">
+            <ion-avatar item-start>
+              <img src="{{item.logo}}">
+            </ion-avatar>
+            {{ item.display_name }}
+        </ion-item>
+    </ion-list>
+    <div class="error" *ngIf="channels == ''">Nenhum Canal encontrado.</div>
+</ion-content>

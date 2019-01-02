@@ -1,0 +1,57 @@
+filtro-canais{
+    ion-header{
+        ion-navbar{
+            .toolbar-background{
+            background-color: $twitch;
+
+            } 
+            .toolbar-background-md{
+                background-color: $twitch;
+
+            }
+
+            ion-title{
+            background-color: $twitch;
+            position: relative;
+            color: white;
+
+            .iconTwitch{
+                display: inline;
+                color: white;
+                border-radius: 50px;
+                font-size: 13px;
+            }
+            span{
+                color: white;
+                font-weight:normal;
+                display: inline;
+
+                ion-icon{
+                    position: absolute;
+                    right: 10px;
+                    font-size: 40px;
+                    bottom: 1px;
+                }
+                    .icon-md{
+                        bottom: -10px;
+                    }
+                }
+            }
+        }
+    }
+    
+
+    ion-list{
+        margin-top: 15px;
+        img{
+            border-radius: 25px;
+            width: 25px;
+        }
+    }
+
+    .error{
+        width: 100vw;
+        text-align: center;
+        color: #ccc;
+    }
+}

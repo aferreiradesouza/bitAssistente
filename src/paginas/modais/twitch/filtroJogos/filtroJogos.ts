@@ -11,6 +11,7 @@ import { PaginaJogoModal } from '../paginaJogo/jogo';
 })
 export class FiltroJogosModal implements OnInit{
     public jogos: any;
+    public game: any = {};
   constructor(public navCtrl: NavController, public twitchService: twitchService, public viewCtrl: ViewController, public modalCtrl: ModalController) { }
 
   ngOnInit(){
@@ -27,8 +28,9 @@ export class FiltroJogosModal implements OnInit{
   }
 
   modalPaginaJogo(game) {
-    console.log(game);
-    let modal = this.modalCtrl.create(PaginaJogoModal, { 'jogoSelect': game} );
+    this.game = { game: game };
+    console.log(this.game);
+    let modal = this.modalCtrl.create(PaginaJogoModal, { 'jogoSelect': this.game} );
     modal.present();
   }
 

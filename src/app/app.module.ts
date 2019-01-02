@@ -19,6 +19,8 @@ import { AjaxService } from '../shared/ajax.service';
 import { twitchService } from '../provedores/apiTwitch.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
+import { UtilService } from '../provedores/util.service';
+import { FiltroCanaisModal } from '../paginas/modais/twitch/filtroChannels/filtro';
 
 @NgModule({
   declarations: [
@@ -30,12 +32,14 @@ import { IonicStorageModule } from '@ionic/storage';
     filtroClipsModal,
     PaginaJogoModal,
     PaginaClipModal,
-    FiltroJogosModal
+    FiltroJogosModal,
+    FiltroCanaisModal
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,13 +51,15 @@ import { IonicStorageModule } from '@ionic/storage';
     filtroClipsModal,
     PaginaJogoModal,
     PaginaClipModal,
-    FiltroJogosModal
+    FiltroJogosModal,
+    FiltroCanaisModal
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AjaxService,
     twitchService,
+    UtilService,
     HttpClient,
     IonicStorageModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

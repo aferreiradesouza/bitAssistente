@@ -26,6 +26,7 @@
     <div class="conteudo">
         <div class="imgCapaDiv" *ngFor="let item of jogos">
             <img src="{{item.box.large}}" (click)="modalPaginaJogo(item)">
+            <div class="infoJogo">{{item.name}}</div>
         </div>
     </div>
     <div class="error" *ngIf="jogos == '' || jogos == []">Nenhum Canal encontrado.</div>
