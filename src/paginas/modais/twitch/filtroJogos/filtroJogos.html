@@ -25,6 +25,8 @@
     </ion-list> -->
     <div class="conteudo">
         <div class="imgCapaDiv" *ngFor="let item of jogos">
+            <img src="{{item.box.large}}" (click)="modalPaginaJogo(item)">
         </div>
     </div>
+    <div class="error" *ngIf="jogos == '' || jogos == []">Nenhum Canal encontrado.</div>
 </ion-content>

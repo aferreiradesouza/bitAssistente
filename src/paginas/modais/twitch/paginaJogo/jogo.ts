@@ -15,6 +15,7 @@ export class PaginaJogoModal implements OnInit{
 
   ngOnInit(){
     this.gameSelecionado = this.params.get('jogoSelect');
+    console.log(this.gameSelecionado)
     this.obterJogo();
     registerLocaleData(localePtBr);
   }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ViewController } from 'ionic-angular';
+import { NavController, ViewController, ModalController } from 'ionic-angular';
 import { twitchService } from '../../../../provedores/apiTwitch.service';
 import localePtBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { PaginaJogoModal } from '../paginaJogo/jogo';
 
 @Component({
   selector: "filtro-jogos",
@@ -10,7 +11,7 @@ import { registerLocaleData } from '@angular/common';
 })
 export class FiltroJogosModal implements OnInit{
     public jogos: any;
-  constructor(public navCtrl: NavController, public twitchService: twitchService, public viewCtrl: ViewController) { }
+  constructor(public navCtrl: NavController, public twitchService: twitchService, public viewCtrl: ViewController, public modalCtrl: ModalController) { }
 
   ngOnInit(){
     registerLocaleData(localePtBr);
@@ -20,7 +21,15 @@ export class FiltroJogosModal implements OnInit{
       this.twitchService.gamesByName(name).then((res) => {
         this.jogos = res.games
         console.log(this.jogos)
+      }).catch((res) => {
+        this.jogos = [];
       })
+  }
+
+  modalPaginaJogo(game) {
+    console.log(game);
+    let modal = this.modalCtrl.create(PaginaJogoModal, { 'jogoSelect': game} );
+    modal.present();
   }
 
   dismiss() {

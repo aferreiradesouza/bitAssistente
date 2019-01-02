@@ -46,16 +46,23 @@ filtro-jogos{
 
     .conteudo{
         width: 100vw;
-        padding: 5px;
+        padding: 5px 0px 0px 5px;
 
         .imgCapaDiv{
             width: calc(33.33% - 5px);
-            margin-right: 10px;
+            margin-right: 5px;
+            margin-top: 1px;
             display: inline-block;
 
             img{
                 width: 100%;
             }
         }
+    }
+
+    .error{
+        width: 100vw;
+        text-align: center;
+        color: #ccc;
     }
 }
