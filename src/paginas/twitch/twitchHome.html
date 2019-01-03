@@ -50,15 +50,25 @@
 
   <div class="headList">CANAIS</div>
   <div class="listHorizontal channels">
-    <div class="itemListChannels add" (click)="modalFiltroChannel()">
+    <!-- <div class="itemListChannels add" (click)="modalFiltroChannel()">
       <div class="conteudoAdd">
         <div class="iconAdd">
           <ion-icon name="add"></ion-icon>
           <div>ADICIONAR<br />CANAL</div>
         </div>
       </div>
-    </div>
+    </div> -->
 
+    <!-- <div class="itemListChannels">
+      <div class="add">
+        <div class="conteudoAdd">
+          <div class="iconAdd">
+            <ion-icon name="add"></ion-icon>
+            <div>ADICIONAR<br />CANAL</div>
+          </div>
+        </div>
+      </div>
+    </div> -->
     <div class="itemListChannels item" *ngFor="let item of channels">
       <div class="thumbnail"><img src="{{ item.logo }}" /></div>
       <div class="content">
@@ -67,4 +77,9 @@
       </div>
     </div>
   </div>
+  <ion-fab bottom right (click)="modalFiltroChannel()">
+    <button ion-fab color="twitch">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>

@@ -195,34 +195,35 @@ twitch-home {
           text-align: center;
           padding: 0px 20px;
       }
-    }
+      .add{
+        position: relative;
+        width: 100%;
+        height: 100%;
 
-    .add {
-      position: relative;
-
-      .conteudoAdd {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: calc(100% - 30px);
-        height: calc(100% - 30px);
-        background-color: #dadada;
-        border-radius: 4px;
-        text-align: center;
-
-        .iconAdd {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #858585;
-            font-size: 12px;
+        .conteudoAdd {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: calc(100% - 30px);
+          height: calc(100% - 30px);
+          background-color: #dadada;
+          border-radius: 4px;
+          text-align: center;
+  
+          .iconAdd {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              color: #858585;
+              font-size: 12px;
+          }
         }
-      }
-
-      ion-icon {
-        font-size: 25px;
+  
+        ion-icon {
+          font-size: 25px;
+        }
       }
     }
   }
@@ -240,5 +241,9 @@ twitch-home {
   .toast{
     background-color: rgba(29, 121, 1, 0.685) !important;
     text-align: center !important;
+  }
+
+  .fab ion-icon{
+    font-size: 40px;
   }
 }
