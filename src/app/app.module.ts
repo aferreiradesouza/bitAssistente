@@ -21,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { UtilService } from '../provedores/util.service';
 import { FiltroCanaisModal } from '../paginas/modais/twitch/filtroChannels/filtro';
+import { PaginaCanalModal } from '../paginas/modais/twitch/paginaCanal/canal';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FiltroCanaisModal } from '../paginas/modais/twitch/filtroChannels/filtr
     PaginaJogoModal,
     PaginaClipModal,
     FiltroJogosModal,
-    FiltroCanaisModal
+    FiltroCanaisModal,
+    PaginaCanalModal
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { FiltroCanaisModal } from '../paginas/modais/twitch/filtroChannels/filtr
     PaginaJogoModal,
     PaginaClipModal,
     FiltroJogosModal,
-    FiltroCanaisModal
+    FiltroCanaisModal,
+    PaginaCanalModal
   ],
   providers: [
     StatusBar,

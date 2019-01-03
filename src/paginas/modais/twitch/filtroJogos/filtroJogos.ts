@@ -30,7 +30,7 @@ export class FiltroJogosModal implements OnInit{
   modalPaginaJogo(game) {
     this.game = { game: game };
     console.log(this.game);
-    let modal = this.modalCtrl.create(PaginaJogoModal, { 'jogoSelect': this.game} );
+    let modal = this.modalCtrl.create(PaginaJogoModal, { 'jogoSelect': this.game } );
     modal.present();
   }
 

@@ -69,11 +69,16 @@
         </div>
       </div>
     </div> -->
-    <div class="itemListChannels item" *ngFor="let item of channels">
-      <div class="thumbnail"><img src="{{ item.logo }}" /></div>
+    <div class="itemListChannels" *ngFor="let item of channels">
+      <div class="ButtonRemover"><ion-icon name="trash"></ion-icon></div>
+      <div class="thumbnail" (click)="modalPaginaCanal(item)"><img src="{{ item.logo }}" /></div>
       <div class="content">
-        {{ item.display_name }}
-        <hr />
+        <div class="nameChannel">{{ item.display_name }}</div>
+        <hr>
+        <div class="detalhe">Status</div>
+        <div [ngClass]="{'aoVivo' : item.status == 'live', 'offline' : item.status == null, 'reRun' : item.status == 'rerun'}">{{item.status == null ? 'OFFLINE' : item.status == 'live' ? 'AO VIVO' : item.status == 'rerun' ? 'RERUN' : 'OFFLINE'}}</div>
+        <div class="detalhe">Notificação</div>
+        <div [ngClass]="{'notAtivado' : item.notificacao, 'notDesativado' : !item.notificacao}">{{item.notificacao ? 'DESATIVAR' : 'ATIVAR'}}</div>
       </div>
     </div>
   </div>

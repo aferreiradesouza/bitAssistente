@@ -21,6 +21,11 @@ export class twitchService {
         const games = await this.ajax.get<any>(url);
         return games;
     }
+    async gameSummary(name) {
+        const url = `https://api.twitch.tv/kraken/streams/summary?game=${name}`
+        const games = await this.ajax.get<any>(url);
+        return games;
+    }
     async clipById(id){
         const url = `https://api.twitch.tv/kraken/clips/${id}`
         const games = await this.ajax.get<any>(url);
@@ -36,6 +41,12 @@ export class twitchService {
         const channel = await this.ajax.get<any>(url);
         return channel;
     }
+    async liveChannelsById(id){
+        const url = `https://api.twitch.tv/kraken/streams/${id}`;
+        const channel = await this.ajax.get<any>(url);
+        return channel;
+    }
+
     async streams(id) {
         const url = `https://api.twitch.tv/helix/streams?game_id=${id}`
         const channel = await this.ajax.get<any>(url);

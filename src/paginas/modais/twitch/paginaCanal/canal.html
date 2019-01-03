@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <span>{{canalSelecionado.display_name}}</span>
+      <span (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <div class="banner" [ngStyle]="{'background-image': 'url('+canalSelecionado.profile_banner+')'}">
+    <div class="logo" [ngStyle]="{'background-image': 'url('+canalSelecionado.logo+')'}"></div>
+  </div>
+  <div class="painel">
+    <div class="notificacao">
+      <ion-icon name="notifications"></ion-icon>
+      <div>DESATIVAR</div>
+    </div>
+    <div class="excluir">
+      <ion-icon name="trash"></ion-icon>
+    </div>
+  </div>
+  <div class="head">DESCRIÇÃO</div>
+  <div class="descricao">{{canal.description}}
+    <span *ngIf="canal.description == ''">Nenhuma informação a ser exibida</span>
+  </div>
+  <div class="aoVivoAgora" *ngIf="stream != ''">
+    <ion-card>
+      <img src="{{stream.preview.large}}"/>
+      <ion-card-content>
+        <ion-card-title>
+          Nine Inch Nails Live
+          </ion-card-title>
+        <p>
+          The most popular industrial group ever, and largely
+          responsible for bringing the music to a mass audience.
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

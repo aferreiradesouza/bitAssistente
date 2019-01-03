@@ -10,7 +10,8 @@ import { registerLocaleData } from "@angular/common";
 import { PaginaClipModal } from "../modais/twitch/paginaClip/clip";
 import { FiltroJogosModal } from "../modais/twitch/filtroJogos/filtroJogos";
 import { UtilService } from "../../provedores/util.service";
-import { ToastController } from 'ionic-angular';
+import { PaginaCanalModal } from "../modais/twitch/paginaCanal/canal";
+import { ToastController } from "ionic-angular";
 
 @Component({
   selector: "twitch-home",
@@ -28,15 +29,15 @@ export class TwitchPage implements OnInit {
     public twitchService: twitchService,
     public modalCtrl: ModalController,
     public util: UtilService,
-    private toastCtrl: ToastController,
+    private toastCtrl: ToastController
   ) {}
 
   ngOnInit() {
     this.obterGames();
     this.buttonClip = true;
     this.errorMensagem = "É necessário buscar um canal";
-    this.channels = []
-    this.channels = this.obterLista("Channels")
+    this.channels = [];
+    this.channels = this.obterLista("Channels");
     registerLocaleData(localePtBr);
   }
 
@@ -89,7 +90,12 @@ export class TwitchPage implements OnInit {
     const modal = this.modalCtrl.create(FiltroCanaisModal);
     modal.onDidDismiss(data => {
       if (data != "fechar") {
-        this.adicionarChannel(data.name, data.display_name, data.logo, data._id, data.followers, data.profile_banner, data.views)
+        this.adicionarChannel(
+          data.display_name,
+          data.logo,
+          data._id,
+          data.profile_banner
+        );
       }
     });
     modal.present();
@@ -102,7 +108,13 @@ export class TwitchPage implements OnInit {
 
   modalPaginaJogo(game) {
     console.log(game);
-    let modal = this.modalCtrl.create(PaginaJogoModal, { jogoSelect: game });
+    let modal = this.modalCtrl.create(PaginaJogoModal, { jogoSelect: game, detalhes: '' });
+    modal.present();
+  }
+
+  modalPaginaCanal(canal) {
+    console.log(canal);
+    let modal = this.modalCtrl.create(PaginaCanalModal, { canalSelect: canal });
     modal.present();
   }
 
@@ -112,55 +124,54 @@ export class TwitchPage implements OnInit {
     modal.present();
   }
 
-  adicionarChannel(name: string, display_name: string, logo: string, _id: number, followers: number, profile_banner: string, views: number){
-    let obj = {name: name, display_name: display_name, logo: logo, _id: _id, followers: followers, profile_banner: profile_banner, views: views}
-    this.channels.unshift(obj);
-    this.util.salvarObjeto('Channels', this.channels);
-    this.presentToast()
+  adicionarChannel(
+    display_name: string,
+    logo: string,
+    _id: number,
+    profile_banner:string,
+  ) {
+    this.twitchService.liveChannelsById(_id)
+      .then((res) => {
+        let obj = {
+          display_name: display_name,
+          logo: logo,
+          _id: _id,
+          profile_banner: profile_banner,
+          status: res.stream == null ? null : res.stream.stream_type,
+          notificacao: true
+        };
+        this.channels.unshift(obj);
+        this.util.salvarObjeto("Channels", this.channels);
+        this.toastSuccess();
+      })
+      .catch((res) => {
+
+      })
   }
 
-  presentToast() {
+  toastSuccess() {
     let toast = this.toastCtrl.create({
-      message: 'Canal adicionado com Sucesso',
+      message: "Canal adicionado com Sucesso",
       duration: 2500,
-      position: 'bottom',
-      cssClass: '.toast'
+      position: "bottom",
+      cssClass: ".toast"
     });
-  
+
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
+      console.log("Dismissed toast");
     });
-  
+
     toast.present();
   }
 
   obterLista(res) {
-
     var consultas = [];
 
     var consultasAux = this.util.obterObjeto(res);
     if (consultasAux != "") {
-        consultas = this.util.converterParaObjeto(consultasAux);
+      consultas = this.util.converterParaObjeto(consultasAux);
     }
 
     return consultas;
-}
-
-  data: any[] = [
-    {
-      url:
-        "https://static-cdn.jtvnw.net/jtv_user_pictures/33d1f325-5fbe-4067-be1e-99671358bf2b-profile_image-70x70.png",
-      nome: "gaules"
-    },
-    {
-      url:
-        "https://static-cdn.jtvnw.net/jtv_user_pictures/1586eefd-def0-4a99-a27a-38b5944f3c34-profile_image-50x50.jpg",
-      nome: "BiDa"
-    },
-    {
-      url:
-        "https://static-cdn.jtvnw.net/jtv_user_pictures/c46b05a0-db41-4c66-b736-3ff018df99ec-profile_image-70x70.png",
-      nome: "alanzoka"
-    }
-  ];
+  }
 }

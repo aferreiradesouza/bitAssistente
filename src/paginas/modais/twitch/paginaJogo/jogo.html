@@ -25,14 +25,14 @@
           <div class="title">Canais ao vivo:</div>
           <div class="detalhe">
             <ion-icon name="videocam"></ion-icon>
-            <div class="number">{{gameSelecionado.channels | number:'1.0-0':'pt-BR'}} {{gameSelecionado.channels == null ? '-' : return}}</div>
+            <div class="number">{{gameSelecionado.channels | number:'1.0-0':'pt-BR'}} {{gameSelecionado.channels ? '' : detalhesGames.channels | number:'1.0-0':'pt-BR'}}</div>
           </div>
         </div>
         <div class="item">
           <div class="title">Espectadores:</div>
           <div class="detalhe">
             <ion-icon name="people"></ion-icon>
-            <div class="number">{{gameSelecionado.viewers | number:'1.0-0':'pt-BR'}} {{gameSelecionado.viewers == null ? '-' : return}}</div>
+            <div class="number">{{gameSelecionado.viewers | number:'1.0-0':'pt-BR'}} {{gameSelecionado.viewers ? '' : detalhesGames.viewers | number:'1.0-0':'pt-BR'}}</div>
           </div>
         </div>
       </div>
