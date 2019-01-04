@@ -114,4 +114,143 @@ canal-pagina{
         width: 100%;
     }
 
+    .stats{
+        width: 100vw;
+        height: 50px;
+        padding: 0 10px;
+
+        .painelStats{
+            width: calc(33.33% - 2.3px);
+            background-color: transparent;
+            border: 1px solid $twitch;
+            height: 100%;
+            display: inline-block;
+            position: relative;
+            padding: 7px;
+            color: $twitch;
+            border-radius: 3px;
+
+            .titleStats{
+                font-size: 12px;
+            }
+
+            .resultStats{
+                position: absolute;
+                right: 7px;
+                bottom: 7px;
+                color: $twitch;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .avisoAoVivo{
+        position: fixed;
+        display: block;
+        width: calc(100vw - 20px);
+        height: 60px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        bottom: 10px;
+        background-color: #f8f8f8; 
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        z-index: 999;
+        padding: 2px;
+        -webkit-box-shadow: 0px 0px 19px -1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 19px -1px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 19px -1px rgba(0,0,0,0.75);
+
+        .close{
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: translate(50%, -50%);
+            font-size: 12px;
+            height: 20px;
+            width: 20px;
+            border-radius: 25px;
+            color: white;
+            background-color: #fa2c2c;
+
+            ion-icon{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform:translate(-50%, -50%);
+            }
+
+        }
+
+        img{
+            height: 100%;
+            display: inline-block;
+            border-radius: 3px;
+        }
+
+        .msgAoVivo{
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 10px;
+            padding: 1px 7px;
+            background-color: red;
+            border-radius: 25px;
+            color: white;
+        }
+
+        .detalhes{
+            float: right;
+            width: calc(100% - 103px);
+            height: 100%;
+
+            .title{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 3px 0 0 3px;
+                width: calc(100% - 40px);
+            }
+
+            .jogo{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 10px;
+                width: calc(100% - 40px);
+
+                span{
+                    font-weight: bold;
+                }
+            }
+
+            .espec{
+                width: calc(100% - 40px);
+                font-size: 12px;
+
+                ion-icon{
+                    float: left;
+                    font-size: 18px;
+                    color: #585858
+                }
+                div{
+                    float: left;
+                    padding: 3px 3px
+                }
+            }
+
+            .icon-open{
+                float: right;
+                width: 35px;
+                height: 35px;
+                margin-top: -14px;
+                margin-right: -1px;
+                font-size: 30px;
+                padding-left: 5px;
+            }
+        }
+    }
+
 }

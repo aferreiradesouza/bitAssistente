@@ -109,6 +109,9 @@ export class TwitchPage implements OnInit {
   modalPaginaJogo(game) {
     console.log(game);
     let modal = this.modalCtrl.create(PaginaJogoModal, { jogoSelect: game, detalhes: '' });
+    modal.onDidDismiss(data => {
+      this.channels = this.obterLista("Channels");
+    });
     modal.present();
   }
 

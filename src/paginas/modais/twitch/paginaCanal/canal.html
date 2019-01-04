@@ -25,18 +25,39 @@
   <div class="descricao">{{canal.description}}
     <span *ngIf="canal.description == ''">Nenhuma informação a ser exibida</span>
   </div>
-  <div class="aoVivoAgora" *ngIf="stream != ''">
-    <ion-card>
-      <img src="{{stream.preview.large}}"/>
-      <ion-card-content>
-        <ion-card-title>
-          Nine Inch Nails Live
-          </ion-card-title>
-        <p>
-          The most popular industrial group ever, and largely
-          responsible for bringing the music to a mass audience.
-        </p>
-      </ion-card-content>
-    </ion-card>
+  <div class="stats">
+    <div class="painelStats">
+      <div class="titleStats">Espectadores</div>
+      <div class="resultStats">{{canal.views | number:'1.0-0':'pt-BR'}}</div>
+    </div>
+    <div class="painelStats">
+      <div class="titleStats">Seguidores</div>
+      <div class="resultStats">{{canal.followers | number:'1.0-0':'pt-BR'}}</div>
+    </div>
+    <div class="painelStats">
+      <div class="titleStats">Linguagem</div>
+      <div class="resultStats">{{canal.language | uppercase}}</div>
+    </div>
+  </div>
+  <div class="tabsVideosClips">
+
   </div>
 </ion-content>
+<ion-footer *ngIf="stream != '' && stream != null && toastLive">
+    <div class="avisoAoVivo">
+      <div class="close" (click)="fecharAviso()"><ion-icon ios="md-close" md="md-close"></ion-icon></div>
+      <img src="{{stream.preview.medium}}" *ngIf="stream.preview.medium != undefined">
+      <div class="msgAoVivo">AO VIVO</div>
+      <div class="detalhes">
+        <div class="title">{{stream.channel.status}}</div>
+        <div class="jogo">Jogo: <span>{{stream.game}}</span></div>
+        <div class="espec">
+          <ion-icon name="people"></ion-icon>
+          <div>{{stream.viewers | number:'1.0-0':'pt-BR'}} espectadores</div>
+        </div>
+        <div class="icon-open">
+            <ion-icon ios="ios-open-outline" md="md-open"></ion-icon>
+        </div>
+      </div>
+    </div>
+</ion-footer>

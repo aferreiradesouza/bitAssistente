@@ -12,6 +12,7 @@ export class PaginaCanalModal implements OnInit {
   public canalSelecionado: any;
   public canal: any;
   public stream: any;
+  public toastLive: boolean;
   constructor(
     public navCtrl: NavController,
     public twitchService: twitchService,
@@ -23,6 +24,7 @@ export class PaginaCanalModal implements OnInit {
     this.canalSelecionado = this.params.get("canalSelect");
     this.canal = "";
     this.stream = "";
+    this.toastLive = true;
     this.obterCanal();
     registerLocaleData(localePtBr);
   }
@@ -44,6 +46,10 @@ export class PaginaCanalModal implements OnInit {
         this.stream = res.stream
         console.log(this.stream)
       });
+  }
+
+  fecharAviso(){
+    this.toastLive = false
   }
   dismiss() {
     this.viewCtrl.dismiss();

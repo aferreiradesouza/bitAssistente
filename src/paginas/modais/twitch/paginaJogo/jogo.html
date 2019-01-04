@@ -45,7 +45,7 @@
     <ion-item *ngFor="let item of gameObtido">
       <h2>{{item.user_name}}</h2>
       <p>{{item.viewer_count | number:'1.0-0':'pt-BR'}} espectadores</p>
-      <div class="buttonAdd">
+      <div class="buttonAdd" (click)="obterChannel(item)">
           <ion-icon name="add"></ion-icon>
       </div>
     </ion-item>

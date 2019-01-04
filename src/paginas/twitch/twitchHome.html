@@ -50,25 +50,6 @@
 
   <div class="headList">CANAIS</div>
   <div class="listHorizontal channels">
-    <!-- <div class="itemListChannels add" (click)="modalFiltroChannel()">
-      <div class="conteudoAdd">
-        <div class="iconAdd">
-          <ion-icon name="add"></ion-icon>
-          <div>ADICIONAR<br />CANAL</div>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <div class="itemListChannels">
-      <div class="add">
-        <div class="conteudoAdd">
-          <div class="iconAdd">
-            <ion-icon name="add"></ion-icon>
-            <div>ADICIONAR<br />CANAL</div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="itemListChannels" *ngFor="let item of channels">
       <div class="ButtonRemover"><ion-icon name="trash"></ion-icon></div>
       <div class="thumbnail" (click)="modalPaginaCanal(item)"><img src="{{ item.logo }}" /></div>
