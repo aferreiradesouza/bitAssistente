@@ -3,6 +3,7 @@ import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { twitchService } from '../../../../provedores/apiTwitch.service';
 import localePtBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { StorageService } from '../../../../provedores/storage.service';
 import { UtilService } from '../../../../provedores/util.service';
 
 @Component({
@@ -14,14 +15,14 @@ export class PaginaJogoModal implements OnInit{
     public gameObtido: any;
     public detalhesGames: any;
     public channels: any[];
-  constructor(public navCtrl: NavController, public twitchService: twitchService, public viewCtrl: ViewController, public params: NavParams, public util: UtilService) { }
+  constructor(public navCtrl: NavController, public twitchService: twitchService, public viewCtrl: ViewController, public params: NavParams, public storage: StorageService, public util: UtilService) { }
 
   ngOnInit(){
     this.gameSelecionado = this.params.get('jogoSelect');
     console.log(this.gameSelecionado)
     this.detalhesGames = {channels: '', viewers: ''};
     this.channels = [];
-    this.channels = this.obterLista("Channels");
+    this.channels = this.util.obterLista("Channels");
     this.obterJogo();
     this.obterDetalhes();
     registerLocaleData(localePtBr);
@@ -37,6 +38,7 @@ export class PaginaJogoModal implements OnInit{
   async obterJogo(){
     await this.twitchService.streams(this.gameSelecionado.game._id).then((response) => {
         this.gameObtido = response.data;
+        this.util.verificarCanal(this.gameObtido);
         console.log(this.gameObtido)
     })
   }
@@ -46,10 +48,18 @@ export class PaginaJogoModal implements OnInit{
   }
 
   obterChannel(item){
-    this.twitchService.channelById(item.user_id)
-      .then((res) => {
-        this.adicionarChannel(res.display_name, res.logo, res._id, res.profile_banner)
+    if(item.adicionado){
+      this.util.removerCanal(item);
+      item.adicionado = false;
+      this.util.toastRemove();
+    }else{
+      this.twitchService.channelById(item.user_id)
+        .then((res) => {
+        this.adicionarChannel(res.display_name, res.logo, res._id, res.profile_banner);
+        item.adicionado = true;
+        this.util.toastSuccess();
       })
+    }
   }
 
   async adicionarChannel(
@@ -63,28 +73,17 @@ export class PaginaJogoModal implements OnInit{
         let obj = {
           display_name: display_name,
           logo: logo,
-          _id: _id,
+          id: _id,
           profile_banner: profile_banner,
           status: res.stream == null ? null : res.stream.stream_type,
           notificacao: true
         };
         this.channels.unshift(obj);
-        this.util.salvarObjeto("Channels", this.channels);
+        this.storage.salvarObjeto("Channels", this.channels);
       })
       .catch((res) => {
 
       })
-  }
-  
-  obterLista(res) {
-    var consultas = [];
-
-    var consultasAux = this.util.obterObjeto(res);
-    if (consultasAux != "") {
-      consultas = this.util.converterParaObjeto(consultasAux);
-    }
-
-    return consultas;
   }
   
 }

@@ -31,7 +31,7 @@ export class PaginaCanalModal implements OnInit {
 
   async obterCanal() {
     await this.twitchService
-      .channelById(this.canalSelecionado._id)
+      .channelById(this.canalSelecionado.id)
       .then(res => {
         this.canal = res;
         console.log(this.canal);
@@ -41,7 +41,7 @@ export class PaginaCanalModal implements OnInit {
 
   async verificarStreamLive() {
     await this.twitchService
-      .liveChannelsById(this.canalSelecionado._id)
+      .liveChannelsById(this.canalSelecionado.id)
       .then(res => {
         this.stream = res.stream
         console.log(this.stream)

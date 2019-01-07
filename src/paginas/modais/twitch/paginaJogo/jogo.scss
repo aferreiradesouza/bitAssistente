@@ -161,4 +161,9 @@ jogo-pagina{
             transform: translate(-50%, -50%);
         }
     }
+
+    .adicionado{
+        background-color: $twitch !important;
+        color: white !important;
+    }
 }

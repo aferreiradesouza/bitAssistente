@@ -9,9 +9,10 @@ import localePtBr from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
 import { PaginaClipModal } from "../modais/twitch/paginaClip/clip";
 import { FiltroJogosModal } from "../modais/twitch/filtroJogos/filtroJogos";
-import { UtilService } from "../../provedores/util.service";
+import { StorageService } from "../../provedores/storage.service";
 import { PaginaCanalModal } from "../modais/twitch/paginaCanal/canal";
 import { ToastController } from "ionic-angular";
+import { UtilService } from "../../provedores/util.service";
 
 @Component({
   selector: "twitch-home",
@@ -28,8 +29,9 @@ export class TwitchPage implements OnInit {
     public navCtrl: NavController,
     public twitchService: twitchService,
     public modalCtrl: ModalController,
-    public util: UtilService,
-    private toastCtrl: ToastController
+    public storage: StorageService,
+    private toastCtrl: ToastController,
+    public util: UtilService
   ) {}
 
   ngOnInit() {
@@ -37,7 +39,7 @@ export class TwitchPage implements OnInit {
     this.buttonClip = true;
     this.errorMensagem = "É necessário buscar um canal";
     this.channels = [];
-    this.channels = this.obterLista("Channels");
+    this.channels = this.util.obterLista("Channels");
     registerLocaleData(localePtBr);
   }
 
@@ -103,6 +105,9 @@ export class TwitchPage implements OnInit {
 
   modalFiltroJogos() {
     const modal = this.modalCtrl.create(FiltroJogosModal);
+    modal.onDidDismiss(data => {
+      this.channels = this.util.obterLista("Channels");
+    })
     modal.present();
   }
 
@@ -110,7 +115,7 @@ export class TwitchPage implements OnInit {
     console.log(game);
     let modal = this.modalCtrl.create(PaginaJogoModal, { jogoSelect: game, detalhes: '' });
     modal.onDidDismiss(data => {
-      this.channels = this.obterLista("Channels");
+      this.channels = this.util.obterLista("Channels");
     });
     modal.present();
   }
@@ -138,18 +143,24 @@ export class TwitchPage implements OnInit {
         let obj = {
           display_name: display_name,
           logo: logo,
-          _id: _id,
+          id: _id,
           profile_banner: profile_banner,
           status: res.stream == null ? null : res.stream.stream_type,
           notificacao: true
         };
         this.channels.unshift(obj);
-        this.util.salvarObjeto("Channels", this.channels);
+        this.storage.salvarObjeto("Channels", this.channels);
         this.toastSuccess();
       })
       .catch((res) => {
 
       })
+  }
+
+  removerCanal(channel){
+    console.log(channel)
+    this.util.removerCanal(channel);
+    this.channels = this.util.obterLista("Channels");
   }
 
   toastSuccess() {
@@ -165,16 +176,5 @@ export class TwitchPage implements OnInit {
     });
 
     toast.present();
-  }
-
-  obterLista(res) {
-    var consultas = [];
-
-    var consultasAux = this.util.obterObjeto(res);
-    if (consultasAux != "") {
-      consultas = this.util.converterParaObjeto(consultasAux);
-    }
-
-    return consultas;
   }
 }

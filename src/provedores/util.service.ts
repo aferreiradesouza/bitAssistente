@@ -1,32 +1,87 @@
 import { Injectable } from "@angular/core";
+import { StorageService } from "./storage.service";
+import { twitchService } from "./apiTwitch.service";
+import { ToastController } from "ionic-angular";
 
 
 @Injectable()
 export class UtilService {
-    constructor() { }
+    public channels: any;
+    constructor(public storage: StorageService, public twitchService: twitchService, public toastCtrl: ToastController) { }
 
-    public obterObjeto(chave) {
-        var valor = window.localStorage.getItem(chave);
+    public removerCanal(channel) {
+        let canais = this.obterLista("Channels")
+        if (channel.user_id != undefined) {
+            for (let i = 0; i < canais.length; i++) {
+                if (canais[i].id == channel.user_id) {
+                    canais.splice(i, 1);
+                    this.storage.salvarObjeto("Channels", canais);
+                }
 
-        if (valor == null || valor == '') {
-            valor = '';
+            }
+        } else {
+            for (let i = 0; i < canais.length; i++) {
+                if (canais[i].id == channel.id) {
+                    canais.splice(i, 1);
+                    this.storage.salvarObjeto("Channels", canais);
+                }
+
+            }
+        }
+    }
+
+    public verificarCanal(streams) {
+        let canais = this.obterLista("Channels")
+        streams.forEach(f => {
+            f.adicionado = false;
+        });
+        for (let i = 0; i < canais.length; i++) {
+            for (let o = 0; o < streams.length; o++) {
+                if (canais[i].id == streams[o].user_id) {
+                    streams[o].adicionado = true;
+                }
+            }
+        }
+    }
+
+    obterLista(res) {
+        var consultas = [];
+
+        var consultasAux = this.storage.obterObjeto(res);
+        if (consultasAux != "") {
+            consultas = this.storage.converterParaObjeto(consultasAux);
         }
 
-        return valor;
+        return consultas;
     }
 
-    public salvarObjeto(chave, valor) {
-        window.localStorage.setItem(chave, JSON.stringify(valor));
-    }
-
-    public converterParaObjeto(valor) {
-        return JSON.parse(valor);
-    }
-
-    public criarGuid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
+    toastSuccess() {
+        let toast = this.toastCtrl.create({
+            message: "Canal adicionado com Sucesso",
+            duration: 1000,
+            position: "bottom",
+            cssClass: ".toast"
         });
+
+        toast.onDidDismiss(() => {
+            console.log("Dismissed toast");
+        });
+
+        toast.present();
+    }
+
+    toastRemove() {
+        let toast = this.toastCtrl.create({
+            message: "Canal removido",
+            duration: 1000,
+            position: "bottom",
+            cssClass: ".toast"
+        });
+
+        toast.onDidDismiss(() => {
+            console.log("Dismissed toast");
+        });
+
+        toast.present();
     }
 }

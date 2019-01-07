@@ -51,11 +51,10 @@
   <div class="headList">CANAIS</div>
   <div class="listHorizontal channels">
     <div class="itemListChannels" *ngFor="let item of channels">
-      <div class="ButtonRemover"><ion-icon name="trash"></ion-icon></div>
+      <div class="ButtonRemover" (click)="removerCanal(item)"><ion-icon name="trash"></ion-icon></div>
       <div class="thumbnail" (click)="modalPaginaCanal(item)"><img src="{{ item.logo }}" /></div>
       <div class="content">
         <div class="nameChannel">{{ item.display_name }}</div>
-        <hr>
         <div class="detalhe">Status</div>
         <div [ngClass]="{'aoVivo' : item.status == 'live', 'offline' : item.status == null, 'reRun' : item.status == 'rerun'}">{{item.status == null ? 'OFFLINE' : item.status == 'live' ? 'AO VIVO' : item.status == 'rerun' ? 'RERUN' : 'OFFLINE'}}</div>
         <div class="detalhe">Notificação</div>

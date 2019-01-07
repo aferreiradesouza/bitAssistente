@@ -19,9 +19,10 @@ import { AjaxService } from '../shared/ajax.service';
 import { twitchService } from '../provedores/apiTwitch.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { UtilService } from '../provedores/util.service';
+import { StorageService } from '../provedores/storage.service';
 import { FiltroCanaisModal } from '../paginas/modais/twitch/filtroChannels/filtro';
 import { PaginaCanalModal } from '../paginas/modais/twitch/paginaCanal/canal';
+import { UtilService } from '../provedores/util.service';
 
 @NgModule({
   declarations: [
@@ -62,9 +63,10 @@ import { PaginaCanalModal } from '../paginas/modais/twitch/paginaCanal/canal';
     SplashScreen,
     AjaxService,
     twitchService,
-    UtilService,
+    StorageService,
     HttpClient,
     IonicStorageModule,
+    UtilService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
