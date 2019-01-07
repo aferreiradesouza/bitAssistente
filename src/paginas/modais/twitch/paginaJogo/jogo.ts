@@ -53,8 +53,10 @@ export class PaginaJogoModal implements OnInit{
       item.adicionado = false;
       this.util.toastRemove();
     }else{
+      item.loading = true
       this.twitchService.channelById(item.user_id)
         .then((res) => {
+        item.loading = false
         this.adicionarChannel(res.display_name, res.logo, res._id, res.profile_banner);
         item.adicionado = true;
         this.util.toastSuccess();

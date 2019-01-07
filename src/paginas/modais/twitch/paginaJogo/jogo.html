@@ -46,7 +46,8 @@
       <h2>{{item.user_name}}</h2>
       <p>{{item.viewer_count | number:'1.0-0':'pt-BR'}} espectadores</p>
       <div class="buttonAdd" (click)="obterChannel(item)" [ngClass]="{'adicionado' : item.adicionado}">
-          <ion-icon name="{{item.adicionado ? 'checkmark' : 'add'}}"></ion-icon>
+          <ion-icon ios="{{item.adicionado ? 'ios-checkmark' : 'ios-add'}}" md="{{item.adicionado ? 'ios-checkmark' : 'ios-add'}}" *ngIf="item.loading == false || item.loading == undefined"></ion-icon>
+          <ion-spinner name="ios" *ngIf="item.loading"></ion-spinner>
       </div>
     </ion-item>
   </ion-list>
