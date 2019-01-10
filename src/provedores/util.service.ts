@@ -30,6 +30,17 @@ export class UtilService {
         }
     }
 
+    public desativarNotificacao(channel){
+        let canais = this.obterLista("Channels")
+        console.log(channel)
+        canais.forEach(f => {
+            if(f.id == channel.id){
+                f.notificacao = !f.notificacao
+                this.storage.salvarObjeto("Channels", canais);
+            }
+        });
+    }
+
     public verificarCanal(streams) {
         let canais = this.obterLista("Channels")
         streams.forEach(f => {

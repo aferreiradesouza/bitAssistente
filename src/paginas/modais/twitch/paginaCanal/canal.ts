@@ -3,6 +3,7 @@ import { NavController, ViewController, NavParams } from "ionic-angular";
 import { twitchService } from "../../../../provedores/apiTwitch.service";
 import localePtBr from "@angular/common/locales/pt";
 import { registerLocaleData } from "@angular/common";
+import { UtilService } from "../../../../provedores/util.service";
 
 @Component({
   selector: "canal-pagina",
@@ -17,7 +18,8 @@ export class PaginaCanalModal implements OnInit {
     public navCtrl: NavController,
     public twitchService: twitchService,
     public viewCtrl: ViewController,
-    public params: NavParams
+    public params: NavParams,
+    public util: UtilService
   ) {}
 
   ngOnInit() {
@@ -46,6 +48,15 @@ export class PaginaCanalModal implements OnInit {
         this.stream = res.stream
         console.log(this.stream)
       });
+  }
+
+  desativarNot(){
+    this.util.desativarNotificacao(this.canalSelecionado)
+    this.canalSelecionado.notificacao = !this.canalSelecionado.notificacao
+  }
+
+  irParaCanal(){
+    window.location.href=this.stream.channel.url
   }
 
   fecharAviso(){

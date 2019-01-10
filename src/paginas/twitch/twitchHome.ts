@@ -157,6 +157,11 @@ export class TwitchPage implements OnInit {
       })
   }
 
+  desativarNot(channel){
+    this.util.desativarNotificacao(channel)
+    this.channels = this.util.obterLista("Channels");
+  }
+
   removerCanal(channel){
     console.log(channel)
     this.util.removerCanal(channel);

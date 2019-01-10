@@ -58,7 +58,7 @@
         <div class="detalhe">Status</div>
         <div [ngClass]="{'aoVivo' : item.status == 'live', 'offline' : item.status == null, 'reRun' : item.status == 'rerun'}">{{item.status == null ? 'OFFLINE' : item.status == 'live' ? 'AO VIVO' : item.status == 'rerun' ? 'RERUN' : 'OFFLINE'}}</div>
         <div class="detalhe">Notificação</div>
-        <div [ngClass]="{'notAtivado' : item.notificacao, 'notDesativado' : !item.notificacao}">{{item.notificacao ? 'DESATIVAR' : 'ATIVAR'}}</div>
+        <div (click)="desativarNot(item)" [ngClass]="{'notAtivado' : item.notificacao, 'notDesativado' : !item.notificacao}">{{item.notificacao ? 'DESATIVAR' : 'ATIVAR'}}</div>
       </div>
     </div>
   </div>

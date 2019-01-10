@@ -13,13 +13,25 @@
     <div class="logo" [ngStyle]="{'background-image': 'url('+canalSelecionado.logo+')'}"></div>
   </div>
   <div class="painel">
-    <div class="notificacao">
-      <ion-icon name="notifications"></ion-icon>
-      <div>DESATIVAR</div>
+    <div class="buttonPainel list">
+        <div>
+          <ion-icon name="add"></ion-icon> 
+            Adicionar
+        </div>
+    </div>
+    <div class="buttonPainel notification">
+        <ion-icon name="notifications"></ion-icon> <span>Desativar</span>
+    </div>
+    <!-- <div class="notificacao" [ngClass]="{'desNotificacao' : canalSelecionado.notificacao == false}" (click)="desativarNot()">
+      <ion-icon name="{{canalSelecionado.notificacao ? 'notifications-off' : 'ios-notifications'}}"></ion-icon>
+      <div>{{canalSelecionado.notificacao ? 'DESATIVAR' : 'ATIVAR'}}</div>
     </div>
     <div class="excluir">
       <ion-icon name="trash"></ion-icon>
     </div>
+    <div class="buttonAdd">
+        <ion-icon ios="ios-add" md="ios-add"></ion-icon>
+    </div> -->
   </div>
   <div class="head">DESCRIÇÃO</div>
   <div class="descricao">{{canal.description}}
@@ -39,9 +51,11 @@
       <div class="resultStats">{{canal.language | uppercase}}</div>
     </div>
   </div>
-  <div class="tabsVideosClips">
-
+  <div class="cardClips">
   </div>
+  <div class="cardVideos">
+  </div>
+
 </ion-content>
 <ion-footer *ngIf="stream != '' && stream != null && toastLive">
     <div class="avisoAoVivo">
@@ -55,7 +69,7 @@
           <ion-icon name="people"></ion-icon>
           <div>{{stream.viewers | number:'1.0-0':'pt-BR'}} espectadores</div>
         </div>
-        <div class="icon-open">
+        <div class="icon-open" (click)="irParaCanal()">
             <ion-icon ios="ios-open-outline" md="md-open"></ion-icon>
         </div>
       </div>
