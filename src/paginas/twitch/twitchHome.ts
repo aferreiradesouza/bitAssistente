@@ -122,7 +122,7 @@ export class TwitchPage implements OnInit {
 
   modalPaginaCanal(canal) {
     console.log(canal);
-    let modal = this.modalCtrl.create(PaginaCanalModal, { canalSelect: canal });
+    let modal = this.modalCtrl.create(PaginaCanalModal, { canalSelect: canal, tabSelect: 'clipes' });
     modal.present();
   }
 

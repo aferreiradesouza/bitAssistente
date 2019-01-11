@@ -81,23 +81,46 @@ canal-pagina{
         }
 
         .list{
-            color: white;
+            color: #31be2c;
             position: relative;
+            font-weight: bold;
 
             div{
                 position: absolute;
                 top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+                left: 10px;
+                font-size: 14px;
+                transform: translate(0%, -50%);
 
                 ion-icon{
                     font-size: 20px;
+                    float: left;
+                    margin-top: -2px;
+                    margin-right: 5px;
                 }
             }
         }
 
         .notification{
-            border-right: none !important;
+            color: #31be2c;
+            position: relative;
+            font-weight: bold;
+            border-right: none;
+
+            div{
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                font-size: 14px;
+                transform: translate(0%, -50%);
+
+                ion-icon{
+                    font-size: 20px;
+                    float: left;
+                    margin-top: -2px;
+                    margin-right: 5px;
+                }
+            }
         }
 
         .notificacao{
@@ -202,11 +225,11 @@ canal-pagina{
             }
 
             .resultStats{
-                position: absolute;
-                right: 7px;
-                bottom: 7px;
                 color: $twitch;
                 font-weight: bold;
+                width: 100%;
+                text-align: right;
+                margin-top: 5px;
             }
         }
     }
@@ -320,16 +343,15 @@ canal-pagina{
         }
     }
 
-    .cardClips{
-        width: 100vw;
-        height: 75px;
-        margin-top: 10px;
-        background-color: red;
-    }
-    .cardVideos{
-        width: 100vw;
-        height: 75px;
-        background-color: blue;
+    ion-toolbar{
+        ion-segment{
+            background-color: white;
+            padding: 0px 10px;
+            
+            .segment-button{
+                max-width: 100% !important;
+            }
+        }
     }
 
 }

@@ -11,6 +11,7 @@ import { UtilService } from "../../../../provedores/util.service";
 })
 export class PaginaCanalModal implements OnInit {
   public canalSelecionado: any;
+  public tab: string;
   public canal: any;
   public stream: any;
   public toastLive: boolean;
@@ -24,6 +25,7 @@ export class PaginaCanalModal implements OnInit {
 
   ngOnInit() {
     this.canalSelecionado = this.params.get("canalSelect");
+    this.tab = this.params.get("tabSelect")
     this.canal = "";
     this.stream = "";
     this.toastLive = true;

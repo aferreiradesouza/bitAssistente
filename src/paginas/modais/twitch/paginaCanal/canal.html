@@ -15,12 +15,15 @@
   <div class="painel">
     <div class="buttonPainel list">
         <div>
-          <ion-icon name="add"></ion-icon> 
+          <ion-icon ios="md-add" md="md-add"></ion-icon> 
             Adicionar
         </div>
     </div>
     <div class="buttonPainel notification">
-        <ion-icon name="notifications"></ion-icon> <span>Desativar</span>
+        <div>
+          <ion-icon ios="ios-notifications" md="ios-notifications"></ion-icon> 
+          Desativar
+        </div>
     </div>
     <!-- <div class="notificacao" [ngClass]="{'desNotificacao' : canalSelecionado.notificacao == false}" (click)="desativarNot()">
       <ion-icon name="{{canalSelecionado.notificacao ? 'notifications-off' : 'ios-notifications'}}"></ion-icon>
@@ -51,11 +54,42 @@
       <div class="resultStats">{{canal.language | uppercase}}</div>
     </div>
   </div>
-  <div class="cardClips">
-  </div>
-  <div class="cardVideos">
-  </div>
 
+  <ion-toolbar no-border-top *ngIf="demo != 'Title'">
+    <ion-segment color="twitch" [(ngModel)]="tab">
+      <ion-segment-button value="clipes">
+        Clipes
+      </ion-segment-button>
+      <ion-segment-button value="videos">
+        Vídeos
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <ion-card>
+    <img src="https://clips-media-assets2.twitch.tv/AT-cm%7C361658278-preview-480x272.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Nine Inch Nails Live
+        </ion-card-title>
+      <p>
+        The most popular industrial group ever, and largely
+        responsible for bringing the music to a mass audience.
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <img src="https://clips-media-assets2.twitch.tv/AT-cm%7C361658278-preview-480x272.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        Nine Inch Nails Live
+        </ion-card-title>
+      <p>
+        The most popular industrial group ever, and largely
+        responsible for bringing the music to a mass audience.
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 <ion-footer *ngIf="stream != '' && stream != null && toastLive">
     <div class="avisoAoVivo">
