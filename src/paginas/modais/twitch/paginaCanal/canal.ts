@@ -11,26 +11,30 @@ import { UtilService } from "../../../../provedores/util.service";
 })
 export class PaginaCanalModal implements OnInit {
   public canalSelecionado: any;
+  public tabAtual: string;
   public tab: string;
   public canal: any;
   public stream: any;
   public toastLive: boolean;
+  public clipsAndVideos: any = [];
   constructor(
     public navCtrl: NavController,
     public twitchService: twitchService,
     public viewCtrl: ViewController,
     public params: NavParams,
     public util: UtilService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.canalSelecionado = this.params.get("canalSelect");
-    this.tab = this.params.get("tabSelect")
+    this.tabAtual = this.params.get("tabSelect")
     this.canal = "";
     this.stream = "";
     this.toastLive = true;
     this.obterCanal();
+    this.obterClipsCanal();
     registerLocaleData(localePtBr);
+    this.tab = this.tabAtual;
   }
 
   async obterCanal() {
@@ -52,16 +56,52 @@ export class PaginaCanalModal implements OnInit {
       });
   }
 
-  desativarNot(){
+  async obterClipsCanal() {
+    await this.twitchService
+      .clips(this.canalSelecionado.id)
+      .then((response) => {
+        this.clipsAndVideos = response.data;
+        console.log(this.clipsAndVideos)
+      })
+  }
+
+  async mudarCategoria(tab) {
+    if (this.tab == tab) {
+      return
+    } else {
+        this.tab = tab;
+        if (this.tabAtual == 'videos') {
+          await this.twitchService
+            .videoById(this.canalSelecionado.id)
+            .then((response) => {
+              this.clipsAndVideos = response.data;
+              this.clipsAndVideos.forEach(f => {
+                f.thumbnail_url = f.thumbnail_url.replace("%{width}", "480")
+                f.thumbnail_url = f.thumbnail_url.replace("%{height}", "272")
+              });
+              console.log(this.clipsAndVideos)
+            })
+        } else {
+          await this.twitchService
+            .clips(this.canalSelecionado.id)
+            .then((response) => {
+              this.clipsAndVideos = response.data;
+              console.log(this.clipsAndVideos)
+            })
+        }
+      }
+    }
+
+  desativarNot() {
     this.util.desativarNotificacao(this.canalSelecionado)
     this.canalSelecionado.notificacao = !this.canalSelecionado.notificacao
   }
 
-  irParaCanal(){
-    window.location.href=this.stream.channel.url
+  irParaCanal() {
+    window.location.href = this.stream.channel.url
   }
 
-  fecharAviso(){
+  fecharAviso() {
     this.toastLive = false
   }
   dismiss() {

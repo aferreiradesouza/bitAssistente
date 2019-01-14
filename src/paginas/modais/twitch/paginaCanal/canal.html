@@ -25,16 +25,6 @@
           Desativar
         </div>
     </div>
-    <!-- <div class="notificacao" [ngClass]="{'desNotificacao' : canalSelecionado.notificacao == false}" (click)="desativarNot()">
-      <ion-icon name="{{canalSelecionado.notificacao ? 'notifications-off' : 'ios-notifications'}}"></ion-icon>
-      <div>{{canalSelecionado.notificacao ? 'DESATIVAR' : 'ATIVAR'}}</div>
-    </div>
-    <div class="excluir">
-      <ion-icon name="trash"></ion-icon>
-    </div>
-    <div class="buttonAdd">
-        <ion-icon ios="ios-add" md="ios-add"></ion-icon>
-    </div> -->
   </div>
   <div class="head">DESCRIÇÃO</div>
   <div class="descricao">{{canal.description}}
@@ -55,41 +45,25 @@
     </div>
   </div>
 
-  <ion-toolbar no-border-top *ngIf="demo != 'Title'">
-    <ion-segment color="twitch" [(ngModel)]="tab">
-      <ion-segment-button value="clipes">
+  <ion-toolbar no-border-top>
+    <ion-segment color="twitch" [(ngModel)]="tabAtual">
+      <ion-segment-button value="clipes" (click)="mudarCategoria('clipes')">
         Clipes
       </ion-segment-button>
-      <ion-segment-button value="videos">
+      <ion-segment-button value="videos" (click)="mudarCategoria('videos')">
         Vídeos
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 
-  <ion-card>
-    <img src="https://clips-media-assets2.twitch.tv/AT-cm%7C361658278-preview-480x272.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-        </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely
-        responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="https://clips-media-assets2.twitch.tv/AT-cm%7C361658278-preview-480x272.jpg"/>
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-        </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely
-        responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-  </ion-card>
+  <div class="cardsClipes" *ngFor="let item of clipsAndVideos">
+    <img [src]="item.thumbnail_url">
+    <div class="rodape">
+      <div class="title">{{item.title}}</div>
+      <div class="vizualizacao">{{item.view_count}} vizualizações</div>
+    </div>
+  </div>
+
 </ion-content>
 <ion-footer *ngIf="stream != '' && stream != null && toastLive">
     <div class="avisoAoVivo">

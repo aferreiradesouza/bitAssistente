@@ -7,7 +7,7 @@ export class twitchService {
     constructor(private ajax: AjaxService) { }
 
     async clips(channel) {
-        const url = `https://api.twitch.tv/helix/clips?broadcaster_id=${channel}`
+        const url = `https://api.twitch.tv/helix/clips?broadcaster_id=${channel}&first=25`
         const clips = await this.ajax.get<any>(url);
         return clips;
     }
@@ -49,6 +49,12 @@ export class twitchService {
 
     async streams(id) {
         const url = `https://api.twitch.tv/helix/streams?game_id=${id}`
+        const channel = await this.ajax.get<any>(url);
+        return channel;
+    }
+
+    async videoById(id) {
+        const url = `https://api.twitch.tv/helix/videos?user_id=${id}`
         const channel = await this.ajax.get<any>(url);
         return channel;
     }
