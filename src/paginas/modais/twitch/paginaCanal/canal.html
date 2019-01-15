@@ -57,10 +57,11 @@
   </ion-toolbar>
 
   <div class="cardsClipes" *ngFor="let item of clipsAndVideos">
+    <div class="tag" [ngClass]="{'backVideo' : item.duration, 'backClipe' : !item.duration}">{{item.duration ? 'VÍDEO' : 'CLIPE'}}</div>
     <img [src]="item.thumbnail_url">
     <div class="rodape">
       <div class="title">{{item.title}}</div>
-      <div class="vizualizacao">{{item.view_count}} vizualizações</div>
+      <div class="vizualizacao">{{item.view_count | number:'1.0-0':'pt-BR'}} vizualizações</div>
     </div>
   </div>
 

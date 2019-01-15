@@ -23,11 +23,11 @@ export class PaginaCanalModal implements OnInit {
     public viewCtrl: ViewController,
     public params: NavParams,
     public util: UtilService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.canalSelecionado = this.params.get("canalSelect");
-    this.tabAtual = this.params.get("tabSelect")
+    this.tabAtual = this.params.get("tabSelect");
     this.canal = "";
     this.stream = "";
     this.toastLive = true;
@@ -38,71 +38,82 @@ export class PaginaCanalModal implements OnInit {
   }
 
   async obterCanal() {
-    await this.twitchService
-      .channelById(this.canalSelecionado.id)
-      .then(res => {
-        this.canal = res;
-        console.log(this.canal);
-        this.verificarStreamLive();
-      });
+    await this.twitchService.channelById(this.canalSelecionado.id).then(res => {
+      this.canal = res;
+      console.log(this.canal);
+      this.verificarStreamLive();
+    });
   }
 
   async verificarStreamLive() {
     await this.twitchService
       .liveChannelsById(this.canalSelecionado.id)
       .then(res => {
-        this.stream = res.stream
-        console.log(this.stream)
+        this.stream = res.stream;
+        console.log(this.stream);
       });
   }
 
   async obterClipsCanal() {
-    await this.twitchService
-      .clips(this.canalSelecionado.id)
-      .then((response) => {
-        this.clipsAndVideos = response.data;
-        console.log(this.clipsAndVideos)
-      })
+    await this.twitchService.clips(this.canalSelecionado.id).then(response => {
+      this.clipsAndVideos = response.data;
+      console.log(this.clipsAndVideos);
+    });
   }
 
   async mudarCategoria(tab) {
     if (this.tab == tab) {
-      return
+      return;
     } else {
-        this.tab = tab;
-        if (this.tabAtual == 'videos') {
-          await this.twitchService
-            .videoById(this.canalSelecionado.id)
-            .then((response) => {
-              this.clipsAndVideos = response.data;
-              this.clipsAndVideos.forEach(f => {
-                f.thumbnail_url = f.thumbnail_url.replace("%{width}", "480")
-                f.thumbnail_url = f.thumbnail_url.replace("%{height}", "272")
-              });
-              console.log(this.clipsAndVideos)
+      this.tab = tab;
+      if (this.tabAtual == "videos") {
+        await this.twitchService
+          .videoById(this.canalSelecionado.id)
+          .then(response => {
+            this.clipsAndVideos = []
+            response.data.map(f => {
+              f.thumbnail_url = f.thumbnail_url.replace("%{width}", "480");
+              f.thumbnail_url = f.thumbnail_url.replace("%{height}", "272");
+              this.clipsAndVideos.push(f)
             })
-        } else {
-          await this.twitchService
-            .clips(this.canalSelecionado.id)
-            .then((response) => {
-              this.clipsAndVideos = response.data;
-              console.log(this.clipsAndVideos)
-            })
-        }
+            this.clipsAndVideos.forEach((f, index) => {
+              if(f.duration){
+                this.clipsAndVideos.splice(index, 1)
+              }
+            });
+            this.clipsAndVideos.sort(function(a, b) {
+              if (a.view_count > b.view_count) {
+                return -1;
+              }
+              if (a.view_count < b.view_count) {
+                return 1;
+              }
+              return 0;
+            });
+            console.log(this.clipsAndVideos);
+          });
+      } else {
+        await this.twitchService
+          .clips(this.canalSelecionado.id)
+          .then(response => {
+            this.clipsAndVideos = response.data;
+            console.log(this.clipsAndVideos);
+          });
       }
     }
+  }
 
   desativarNot() {
-    this.util.desativarNotificacao(this.canalSelecionado)
-    this.canalSelecionado.notificacao = !this.canalSelecionado.notificacao
+    this.util.desativarNotificacao(this.canalSelecionado);
+    this.canalSelecionado.notificacao = !this.canalSelecionado.notificacao;
   }
 
   irParaCanal() {
-    window.location.href = this.stream.channel.url
+    window.location.href = this.stream.channel.url;
   }
 
   fecharAviso() {
-    this.toastLive = false
+    this.toastLive = false;
   }
   dismiss() {
     this.viewCtrl.dismiss();
