@@ -21,8 +21,8 @@
     </div>
     <div class="buttonPainel notification">
         <div>
-          <ion-icon ios="ios-notifications" md="ios-notifications"></ion-icon> 
-          Desativar
+          <ion-icon ios="{{canalSelecionado.notificacao ? 'ios-notifications-off' : 'ios-notifications'}}" md="{{canalSelecionado.notificacao ? 'ios-notifications-off' : 'ios-notifications'}}"></ion-icon> 
+          {{canalSelecionado.notificacao ? 'Desativar' : 'Ativar'}}
         </div>
     </div>
   </div>
