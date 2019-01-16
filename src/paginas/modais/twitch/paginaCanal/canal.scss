@@ -68,7 +68,7 @@ canal-pagina{
         margin-left: 50px;
         margin-top: 0px;
         padding: 1px 5px;
-        background-color: $twitch;
+        background-color: #272727;
         padding-left: 63px;
         white-space: nowrap;
 
@@ -126,13 +126,16 @@ canal-pagina{
         }
     }
 
-    .cardsClipes{
+    .cardsPerfil{
         width: calc(100vw - 20px);
         position: relative;
         margin: 0 auto 10px;
         border-radius: 3px;
         overflow: hidden;
         background-color: #ccc;
+        -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
 
         .tag{
             position: absolute;
@@ -147,6 +150,10 @@ canal-pagina{
             -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
             -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
             box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
+
+            ion-icon{
+                margin-right: 3px;
+            }
         }
 
         .backClipe{
